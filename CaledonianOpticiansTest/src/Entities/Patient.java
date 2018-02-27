@@ -5,6 +5,8 @@
  */
 package Entities;
 
+import java.util.Arrays;
+
 /**
  *
  * @author jonty
@@ -13,12 +15,11 @@ public class Patient {
     private String patientID;
     private String name;
     private String lastName;
-    private int age;
     private String dateOfBirth;
     private String address;
     private String postCode;
     private String email;
-    private char[] password;
+    private String password;
     private boolean patientExists = false;
     
     public Patient(){
@@ -31,7 +32,7 @@ public class Patient {
         this.patientExists = false;
     }
     
-    public Patient(String name, String lastName, String dateOfBirth, String address, String postCode, String email, char[] password){
+    public Patient(String name, String lastName, String dateOfBirth, String address, String postCode, String email, String password){
         this.name = name;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -72,8 +73,12 @@ public class Patient {
         return patientExists;
     }
     
-    public void savePatient(){
-        
+    public String getPatientID(){
+        return patientID;
+    }
+    
+    public String getPassword(){
+        return password;
     }
     
     public void retrievePatientDetails(String patientID, String password){

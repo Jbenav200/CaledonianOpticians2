@@ -117,14 +117,12 @@ public class SplashScreen extends javax.swing.JFrame {
             Home homescr = new Home();
             homescr.setVisible(true);
             
-            Connection conn = null;
-            Class.forName("com.mysql.jdbc.Driver");
-            DriverManager.getConnection("jdbc:mysql://localhost/CaledonianOpticians","root", "");
-            System.out.print("Database is connected !");
+            DBConnect con = new DBConnect();
+            Connection Connect = con.Connect();
         }
         catch(Exception e)
         {
-            System.out.print("Do not connect to DB - Error:"+e);
+            
         }
     }
 

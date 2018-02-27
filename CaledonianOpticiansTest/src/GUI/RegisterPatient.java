@@ -1,6 +1,7 @@
 package GUI;
 
 import Entities.Patient;
+import java.sql.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -393,7 +394,13 @@ public class RegisterPatient extends javax.swing.JFrame {
     private void registerPatientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerPatientMouseClicked
         // TODO add your handling code here:
         System.out.println("Hit!");
-        patient = new Entities.Patient(nameField.getText(), surnameField.getText(), dobField.getText(), addressField.getText(), postCodeField.getText(), emailField.getText(),passwordField.getPassword());
+        String pass = new String(passwordField.getPassword());
+        patient = new Entities.Patient(nameField.getText(), surnameField.getText(), dobField.getText(), addressField.getText(), postCodeField.getText(), emailField.getText(),pass);
+        try {
+            savePatient();
+        } catch (SQLException e) {
+            
+        }
         PatientLogin plogin = new PatientLogin();
         plogin.setVisible(true);
         RegistrationSuccess pop = new RegistrationSuccess();
@@ -402,6 +409,43 @@ public class RegisterPatient extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_registerPatientMouseClicked
 
+    public void savePatient() throws SQLException{
+        Connection con = null;
+        Statement statement = null;
+        String pass = patient.getPassword();
+        String savePatientToSQL = "INSERT INTO Patient(PatientID, Name, LastName, DateOfBirth, Password, Address, PostCode, Email) Values("+ patient.getPatientID() + ", " + patient.getName() + ", " + patient.getLastName() + ", " + patient.getDOB() + ", " + patient.getPassword() + ", " + patient.getAddress() + ", " + patient.getPostCode() + ", " + patient.getEmail() +  ")";
+        String newPatient = "INSERT INTO patients(PatientID, Name, LastName, DateOfBirth, Password, Address , PostCode , Email) VALUES ('" + patient.getPatientID() + "', '" + patient.getName() + "', '"+ patient.getLastName() + "', '" + patient.getDOB() + "', '" + patient.getPassword() + "', '" + patient.getAddress() + "', '" + patient.getPostCode() + "', '" + patient.getEmail() +"')";
+        try {
+			
+            
+                DBConnect dbcon = new DBConnect();
+                con = dbcon.Connect();
+                statement = con.createStatement();
+
+                System.out.println(newPatient);
+
+                // execute insert SQL stetement
+                statement.executeUpdate(newPatient);
+
+                System.out.println("Record is inserted into Patient table!");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        } finally {
+
+            if (statement != null) {
+                    statement.close();
+            }
+
+            if (con != null) {
+                    con.close();
+            }
+
+        }
+        
+    }
+    
     private void registerPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerPatientActionPerformed
         // TODO add your handling code here:
         
