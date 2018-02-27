@@ -1,4 +1,7 @@
 package GUI;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -94,6 +97,16 @@ public class PatientLogin extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -179,6 +192,52 @@ public class PatientLogin extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        Connection conn = null;
+        Statement statement = null;
+        String user = jTextField1.getText();
+        String pass = new String(jPasswordField1.getPassword());
+        
+        if(user != null && pass != null)
+        {
+            
+            try {
+                DBConnect con = new DBConnect();
+                conn = con.Connect();
+                String verify = "SELECT * FROM Patients WHERE PatientID = '" + user + "' AND Password ='" + pass +"'";
+                statement = conn.createStatement();
+                statement.execute(verify);
+                ResultSet rs = statement.executeQuery(verify);
+                while (rs.next())
+                {
+                    String patientID = rs.getString("PatientID");
+                    String password = rs.getString("Password");
+                    
+                    if (patientID.equals(user) && password.equals(pass))
+                    {
+                        PatientDashboard pdb = new PatientDashboard();
+                        pdb.setVisible(true);
+                        setVisible(false);
+                        dispose();
+                    }
+                    else
+                    {
+                        System.out.println("User not found!");
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(PatientLogin.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+        }
+        
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
