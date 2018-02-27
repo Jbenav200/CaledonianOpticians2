@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_141" class="java.beans.XMLDecoder">
+ <object class="Entities.Patients" id="Patients0">
+  <void property="patients">
+   <void method="add">
+    <object class="GUI.RegisterPatient">
+     <void property="name">
+      <string>frame0</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>
