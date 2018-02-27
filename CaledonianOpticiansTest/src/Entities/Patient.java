@@ -19,6 +19,7 @@ public class Patient {
     private String postCode;
     private String email;
     private char[] password;
+    private boolean patientExists = false;
     
     public Patient(){
         this.name = "John";
@@ -27,6 +28,7 @@ public class Patient {
         this.address = "25 wallaby way";
         this.postCode = "G70 9LU";
         this.email = "john.doe@gmail.com";
+        this.patientExists = false;
     }
     
     public Patient(String name, String lastName, String dateOfBirth, String address, String postCode, String email, char[] password){
@@ -39,6 +41,7 @@ public class Patient {
         this.password = password;
         this.patientID = this.name.substring(0, 1) + this.name.substring(1,2) + this.name.substring(2,3) + this.lastName.substring(0,1) + this.lastName.substring(1,2) + this.lastName.substring(2,3) + this.dateOfBirth.substring(8,9) + this.dateOfBirth.substring(9,10);
         System.out.println(patientID);
+        this.patientExists = true;
     }
     
     public String getName(){
@@ -63,6 +66,10 @@ public class Patient {
     
     public String getEmail(){
         return this.email;
+    }
+    
+    public boolean getPatientExists(){
+        return patientExists;
     }
     
     public void savePatient(){
