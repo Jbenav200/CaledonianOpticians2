@@ -16,6 +16,4 @@ public class SerializePatientToXML {
     
     XMLEncoder encoder=null;
     
-    
-    
 }
