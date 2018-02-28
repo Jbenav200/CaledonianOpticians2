@@ -202,7 +202,6 @@ public class PatientLogin extends javax.swing.JFrame {
         
         if(user != null && pass != null)
         {
-            
             try {
                 DBConnect con = new DBConnect();
                 conn = con.Connect();

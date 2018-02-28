@@ -58,6 +58,11 @@ public class OpticianLogin extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -181,6 +186,13 @@ public class OpticianLogin extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        String user = jTextField1.getText();
+        String pass = new String(jPasswordField1.getPassword());
+        
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
