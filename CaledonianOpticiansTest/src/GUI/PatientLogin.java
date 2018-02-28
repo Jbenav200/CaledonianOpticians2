@@ -228,7 +228,6 @@ public class PatientLogin extends javax.swing.JFrame {
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(PatientLogin.class.getName()).log(Level.SEVERE, null, ex);
-                
             }
         }
         
