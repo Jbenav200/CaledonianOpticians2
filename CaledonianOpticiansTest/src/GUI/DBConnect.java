@@ -17,7 +17,6 @@ public class DBConnect {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/caledonianopticians1", "root", "");
-            System.out.print("Database is connected !");
         }
         catch(Exception e)
         {
