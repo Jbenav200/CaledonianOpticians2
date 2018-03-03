@@ -5,21 +5,24 @@
  */
 package GUI;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import net.proteanit.sql.*;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
  * @author jonty
  */
-public class ManageOpticians extends javax.swing.JFrame {
+public class ManagePatients extends javax.swing.JFrame {
 
     /**
-     * Creates new form ManageOpticians
+     * Creates new form ManagePatients
      */
-    public ManageOpticians() {
+    public ManagePatients() {
         initComponents();
         Populate();
     }
@@ -120,7 +123,7 @@ public class ManageOpticians extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Opticians");
+        jLabel6.setText("Patients");
 
         jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -135,7 +138,7 @@ public class ManageOpticians extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(0, 153, 255));
         jButton4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("New Optician");
+        jButton4.setText("New Patient");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
@@ -226,7 +229,7 @@ public class ManageOpticians extends javax.swing.JFrame {
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-        NewOptician newOp = new NewOptician();
+        RegisterPatient newOp = new RegisterPatient();
         newOp.setVisible(true);
         Populate();
     }//GEN-LAST:event_jButton4MouseClicked
@@ -234,7 +237,7 @@ public class ManageOpticians extends javax.swing.JFrame {
     public void Populate(){
         Connection conn;
         Statement statement;
-        String getOpticians = "SELECT opticianID, name, lastName FROM opticians";
+        String getOpticians = "SELECT PatientID, Name, LastName FROM patients";
         try {
             DBConnect db = new DBConnect();
             conn = db.Connect();
@@ -245,7 +248,7 @@ public class ManageOpticians extends javax.swing.JFrame {
             Logger.getLogger(ManageOpticians.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+        
     /**
      * @param args the command line arguments
      */
@@ -263,20 +266,20 @@ public class ManageOpticians extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageOpticians.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePatients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageOpticians.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePatients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageOpticians.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePatients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageOpticians.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagePatients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageOpticians().setVisible(true);
+                new ManagePatients().setVisible(true);
             }
         });
     }

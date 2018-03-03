@@ -413,7 +413,6 @@ public class RegisterPatient extends javax.swing.JFrame {
         Connection con = null;
         Statement statement = null;
         String pass = patient.getPassword();
-        String savePatientToSQL = "INSERT INTO Patients(PatientID, Name, LastName, DateOfBirth, Password, Address, PostCode, Email) Values("+ patient.getPatientID() + ", " + patient.getName() + ", " + patient.getLastName() + ", " + patient.getDOB() + ", " + patient.getPassword() + ", " + patient.getAddress() + ", " + patient.getPostCode() + ", " + patient.getEmail() +  ")";
         String newPatient = "INSERT INTO patients(PatientID, Name, LastName, DateOfBirth, Password, Address , PostCode , Email) VALUES ('" + patient.getPatientID() + "', '" + patient.getName() + "', '"+ patient.getLastName() + "', '" + patient.getDOB() + "', '" + patient.getPassword() + "', '" + patient.getAddress() + "', '" + patient.getPostCode() + "', '" + patient.getEmail() +"')";
         try {
 			

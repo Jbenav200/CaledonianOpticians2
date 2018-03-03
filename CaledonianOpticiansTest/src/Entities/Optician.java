@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package Entities;
+import GUI.DBConnect;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
 /**
@@ -38,7 +42,54 @@ public class Optician {
         this.appointments = appointments;
     }
     
-    public void saveOptician(){
+    public String getPassword(){
+        return password;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    
+    public String getLastName(){
+        return lastName;
+    }
+    
+    public String getOpticianID(){
+        return opticianID;
+    }
+    
+    public void saveOptician() throws SQLException{
+        Connection con = null;
+        Statement statement = null;
+        String newOptician = "INSERT INTO opticians(opticianID, password, name, lastName) VALUES ('" + getOpticianID() + "', '" + getPassword() + "', '"+ getName() + "', '" + getLastName() + "')";
+        try {
+			
+            
+                DBConnect dbcon = new DBConnect();
+                con = dbcon.Connect();
+                statement = con.createStatement();
+
+                System.out.println(newOptician);
+
+                // execute insert SQL stetement
+                statement.executeUpdate(newOptician);
+
+                System.out.println("Record is inserted into Patient table!");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        } finally {
+
+            if (statement != null) {
+                    statement.close();
+            }
+
+            if (con != null) {
+                    con.close();
+            }
+
+        }
         
     }
     

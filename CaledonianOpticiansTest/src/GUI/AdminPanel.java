@@ -56,6 +56,11 @@ public class AdminPanel extends javax.swing.JFrame {
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/zoom-in-eye.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -265,7 +270,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-        PatientLogin plogin = new PatientLogin();
+        Home plogin = new Home();
         plogin.setVisible(true);
         setVisible(false);
         dispose();
@@ -278,6 +283,14 @@ public class AdminPanel extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        ManagePatients newpat = new ManagePatients();
+        newpat.setVisible(true);
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments

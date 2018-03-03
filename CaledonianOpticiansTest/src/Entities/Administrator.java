@@ -5,6 +5,8 @@
  */
 package Entities;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author jonty
@@ -22,7 +24,7 @@ public class Administrator {
         this.password = password;
     }
     
-    public void registerOptician(String opticianID, String password, String name, String lastName){
+    public void registerOptician(String opticianID, String password, String name, String lastName) throws SQLException{
         Optician newOp = new Optician(opticianID, password, name, lastName);
         newOp.saveOptician();
     }
