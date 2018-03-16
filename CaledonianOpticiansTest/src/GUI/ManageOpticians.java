@@ -5,10 +5,13 @@
  */
 package GUI;
 
+import Entities.Optician;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import net.proteanit.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -126,11 +129,21 @@ public class ManageOpticians extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Edit");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 255));
         jButton2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Delete");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(0, 153, 255));
         jButton4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -229,7 +242,41 @@ public class ManageOpticians extends javax.swing.JFrame {
         NewOptician newOp = new NewOptician();
         newOp.setVisible(true);
         Populate();
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("InputDialog Example #2");
+        String code = JOptionPane.showInputDialog(
+        frame, 
+        "Enter the optician ID:", 
+        "Optician ID", 
+        JOptionPane.WARNING_MESSAGE
+    );
+        ViewOptician viewOp = new ViewOptician(code);
+        viewOp.setVisible(true);
+        setVisible(false);
+        dispose();
+        
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("InputDialog Example #2");
+        String chode = JOptionPane.showInputDialog(
+        frame, 
+        "Enter the optician ID:", 
+        "Optician ID", 
+        JOptionPane.WARNING_MESSAGE);
+        Optician newOp = new Optician(chode);
+        newOp.deleteOptician(chode);
+        ManageOpticians manOp = new ManageOpticians();
+        manOp.setVisible(true);
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
 
     public void Populate(){
         Connection conn;
