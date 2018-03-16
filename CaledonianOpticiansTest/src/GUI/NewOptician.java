@@ -180,6 +180,8 @@ public class NewOptician extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(NewOptician.class.getName()).log(Level.SEVERE, null, ex);
         }
+        ManageOpticians manOp = new ManageOpticians();
+        manOp.setVisible(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
