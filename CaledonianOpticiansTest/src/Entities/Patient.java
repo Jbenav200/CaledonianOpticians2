@@ -5,13 +5,21 @@
  */
 package Entities;
 
+import GUI.DBConnect;
+import GUI.ManageOpticians;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author jonty
  */
-public class Patient {
+public final class Patient {
     private String patientID;
     private String name;
     private String lastName;
@@ -30,6 +38,13 @@ public class Patient {
         this.postCode = "G70 9LU";
         this.email = "john.doe@gmail.com";
         this.patientExists = false;
+    }
+    
+    public Patient(String patientID){
+        this.patientID = patientID;
+        receivePatientData(patientID);
+        
+        
     }
     
     public Patient(String name, String lastName, String dateOfBirth, String address, String postCode, String email, String password){
@@ -85,4 +100,61 @@ public class Patient {
         
     }
     
+    public void updatePatientDetails(String patientID, String name, String lastName, String dateOB){
+        Connection conn;
+        Statement statement;
+        System.out.println(patientID + name + lastName);
+        String setOpticianDetails = "UPDATE patients SET patientID  = '"+ patientID + "' , name = '"+ name + "' , lastName = '" + lastName + "', DateOfBirth = '"+ dateOB + "' WHERE patientID = '"+ this.patientID +"'";
+        try {
+            DBConnect db = new DBConnect();
+            conn = db.Connect();
+            statement = conn.createStatement();
+            String opID;
+            statement.executeUpdate(setOpticianDetails);
+            
+            System.out.println("Complete!");
+        } catch (SQLException ex) {
+            Logger.getLogger(ManageOpticians.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void receivePatientData(String patientID){
+        Connection conn;
+        Statement statement;
+        String getOpticianDetails = "SELECT * FROM patients WHERE patientID = '"+ this.patientID +"'";
+        try {
+            DBConnect db = new DBConnect();
+            conn = db.Connect();
+            statement = conn.createStatement();
+            ResultSet rs;
+            String opID;
+            rs = statement.executeQuery(getOpticianDetails);
+            if(rs.next()){
+                this.patientID = rs.getString(2);
+                this.name = rs.getString(3);
+                this.lastName = rs.getString(4);
+                this.dateOfBirth = rs.getString(5);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ManageOpticians.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void deletePatient(String patientID){
+        Connection conn;
+        Statement statement;
+        System.out.println(patientID + name + lastName);
+        String setOpticianDetails = "DELETE FROM patients WHERE patientID = '"+ patientID +"'";
+        try {
+            DBConnect db = new DBConnect();
+            conn = db.Connect();
+            statement = conn.createStatement();
+            statement.execute(setOpticianDetails);
+            
+            System.out.println("Deleted!");
+        } catch (SQLException ex) {
+            Logger.getLogger(ManageOpticians.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

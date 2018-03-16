@@ -11,7 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import net.proteanit.sql.DbUtils;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -129,6 +131,11 @@ public class ManagePatients extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Edit");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 153, 255));
         jButton2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -233,6 +240,21 @@ public class ManagePatients extends javax.swing.JFrame {
         newOp.setVisible(true);
         Populate();
     }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("InputDialog Example #2");
+        String code = JOptionPane.showInputDialog(
+        frame, 
+        "Enter the Patient ID:", 
+        "Patient ID", 
+        JOptionPane.WARNING_MESSAGE
+    );
+        ViewPatient viewPat = new ViewPatient(code);
+        viewPat.setVisible(true);
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     public void Populate(){
         Connection conn;
