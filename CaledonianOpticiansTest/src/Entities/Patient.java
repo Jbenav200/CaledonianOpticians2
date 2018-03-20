@@ -104,27 +104,28 @@ public final class Patient {
         Connection conn;
         Statement statement;
         System.out.println(patientID + name + lastName);
-        String setOpticianDetails = "UPDATE patients SET patientID  = '"+ patientID + "' , name = '"+ name + "' , lastName = '" + lastName + "', DateOfBirth = '"+ dateOB + "' WHERE patientID = '"+ this.patientID +"'";
+        String setOpticianDetails = "UPDATE patients SET PatientID= '" + patientID + "',Name='"+ name +"',LastName='"+ lastName +"',DateOfBirth='"+ dateOB +"' WHERE PatientID = '"+ this.patientID +"'";
+        DBConnect db = new DBConnect();
+        conn = db.Connect();
         try {
-            DBConnect db = new DBConnect();
-            conn = db.Connect();
             statement = conn.createStatement();
-            String opID;
             statement.executeUpdate(setOpticianDetails);
+        } catch (SQLException ex) {
+            Logger.getLogger(Patient.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
             
             System.out.println("Complete!");
-        } catch (SQLException ex) {
-            Logger.getLogger(ManageOpticians.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     
     public void receivePatientData(String patientID){
         Connection conn;
         Statement statement;
         String getOpticianDetails = "SELECT * FROM patients WHERE patientID = '"+ this.patientID +"'";
-        try {
             DBConnect db = new DBConnect();
             conn = db.Connect();
+        try {
             statement = conn.createStatement();
             ResultSet rs;
             String opID;
@@ -135,9 +136,8 @@ public final class Patient {
                 this.lastName = rs.getString(4);
                 this.dateOfBirth = rs.getString(5);
             }
-            
         } catch (SQLException ex) {
-            Logger.getLogger(ManageOpticians.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Patient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package GUI;
+import Services.Appointment;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -80,6 +83,11 @@ public class PatientDashboard extends javax.swing.JFrame {
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\jonty\\Documents\\Uni\\IP1\\CaledonianOpticians-master\\CaledonianOpticians-master\\calendar-and-clock-time-administration-and-organization-tools-symbol (1).png")); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -214,6 +222,21 @@ public class PatientDashboard extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("InputDialog Example #2");
+        String code = JOptionPane.showInputDialog(
+        frame, 
+        "Enter the patient ID:", 
+        "Patient ID", 
+        JOptionPane.WARNING_MESSAGE
+    );
+        ViewAppointmentsPatient vap = new ViewAppointmentsPatient(code);
+        vap.setVisible(true);
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments

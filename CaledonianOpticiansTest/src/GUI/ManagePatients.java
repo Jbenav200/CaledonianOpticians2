@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Entities.Patient;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -141,6 +142,11 @@ public class ManagePatients extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Delete");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(0, 153, 255));
         jButton4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -255,6 +261,20 @@ public class ManagePatients extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("InputDialog Example #2");
+        String code = JOptionPane.showInputDialog(
+        frame, 
+        "Enter the Patient ID:", 
+        "Patient ID", 
+        JOptionPane.WARNING_MESSAGE
+    );
+        
+        Patient pat = new Patient(code);
+        pat.deletePatient(code);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     public void Populate(){
         Connection conn;

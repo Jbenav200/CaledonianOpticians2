@@ -6,6 +6,9 @@
 package GUI;
 
 import Entities.Patient;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,7 +32,7 @@ public class ViewPatient extends javax.swing.JFrame {
         Patient newPat = new Patient(patientID);
         nameField.setText(newPat.getName());
         lastNameField.setText(newPat.getLastName());
-        opticianIDField.setText(newPat.getPatientID());
+        patientIDField.setText(newPat.getPatientID());
         dobField.setText(newPat.getDOB());
     }
 
@@ -46,7 +49,7 @@ public class ViewPatient extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         nameField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        opticianIDField = new javax.swing.JTextField();
+        patientIDField = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lastNameField = new javax.swing.JTextField();
@@ -84,8 +87,8 @@ public class ViewPatient extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Name:");
 
-        opticianIDField.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        opticianIDField.setToolTipText("");
+        patientIDField.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        patientIDField.setToolTipText("");
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 255));
 
@@ -148,7 +151,7 @@ public class ViewPatient extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(opticianIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(patientIDField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -180,7 +183,7 @@ public class ViewPatient extends javax.swing.JFrame {
                             .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(opticianIDField)))
+                        .addComponent(patientIDField)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -220,11 +223,12 @@ public class ViewPatient extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         Patient newPat = new Patient(patientID);
+        this.patientID = patientIDField.getText();
         this.name = nameField.getText();
         this.lastName = lastNameField.getText();
         this.dateOB = dobField.getText();
-        newPat.updatePatientDetails(patientID, this.name, this.lastName, this.dateOB);
-        System.out.println(this.name);
+        newPat.updatePatientDetails(this.patientID, this.name, this.lastName, this.dateOB);
+        System.out.println(this.lastName);
         ManagePatients manPats = new ManagePatients();
         manPats.setVisible(true);
         setVisible(false);
@@ -278,6 +282,6 @@ public class ViewPatient extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField lastNameField;
     private javax.swing.JTextField nameField;
-    private javax.swing.JTextField opticianIDField;
+    private javax.swing.JTextField patientIDField;
     // End of variables declaration//GEN-END:variables
 }
