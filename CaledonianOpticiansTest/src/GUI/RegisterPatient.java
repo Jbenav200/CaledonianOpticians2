@@ -395,7 +395,7 @@ public class RegisterPatient extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("Hit!");
         String pass = new String(passwordField.getPassword());
-        patient = new Entities.Patient(nameField.getText(), surnameField.getText(), dobField.getText(), addressField.getText(), postCodeField.getText(), emailField.getText(),pass);
+        patient = new Entities.Patient(nameField.getText(), surnameField.getText(), dobField.getText(), addressField.getText(), postCodeField.getText(), emailField.getText(), pass);
         try {
             savePatient();
         } catch (SQLException e) {
