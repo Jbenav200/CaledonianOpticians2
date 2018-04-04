@@ -18,7 +18,7 @@ public class DBConnect {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/caledonianopticians1", "root", "");
         }
-        catch(Exception e)
+        catch(ClassNotFoundException | SQLException e)
         {
             System.out.print("Did not connect to DB - Error:"+e);
         }

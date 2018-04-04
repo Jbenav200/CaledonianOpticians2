@@ -167,8 +167,10 @@ public class ViewAppointmentsPatient extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        
-        
+        NewAppointment newapt = new NewAppointment(this.patientID);
+        newapt.setVisible(true);
+        setVisible(false);
+        dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
