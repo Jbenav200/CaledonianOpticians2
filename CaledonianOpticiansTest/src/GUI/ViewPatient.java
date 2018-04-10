@@ -227,7 +227,8 @@ public class ViewPatient extends javax.swing.JFrame {
         this.name = nameField.getText();
         this.lastName = lastNameField.getText();
         this.dateOB = dobField.getText();
-        newPat.updatePatientDetails(this.patientID, this.name, this.lastName, this.dateOB);
+        String status = "in progress";
+        newPat.updatePatientDetails(this.patientID, this.name, this.lastName, this.dateOB, status);
         System.out.println(this.lastName);
         ManagePatients manPats = new ManagePatients();
         manPats.setVisible(true);

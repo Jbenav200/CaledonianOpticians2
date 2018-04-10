@@ -25,6 +25,7 @@ public class Appointment {
     private String time;
     private String date;
     private String reference;
+    private String active;
     
     public Appointment(){
         this.patientID = "GilFre69";
@@ -40,12 +41,17 @@ public class Appointment {
         }
     }
     
-    public Appointment(String patientID, String opticianID, String time, String date){
+    public Appointment(String patientID, String opticianID, String time, String date, String reference){
         this.patientID = patientID;
         this.opticianID = opticianID;
         this.time = time;
         this.date = date;
         this.appointmentID = patientID;
+        this.reference = reference;
+    }
+    
+    public Appointment(String patientID){
+        this.patientID = patientID;
     }
     
     public void saveAppointment(String appointmentID, String patientID, String opticianID, String time, String date, String reference) throws SQLException{
@@ -105,6 +111,39 @@ public class Appointment {
 
                 // execute insert SQL stetement
                 statement.executeQuery(deleteAppointment);
+
+                System.out.println("Record has been removed from appointments table!");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+
+        } finally {
+
+            if (statement != null) {
+                    statement.close();
+            }
+
+            if (con != null) {
+                    con.close();
+            }
+        }
+    }
+    
+    public void deleteAllAppointments(String patientID) throws SQLException{
+        Connection con = null;
+        Statement statement = null;
+        String deleteAppointment = "DELETE FROM appointments WHERE patientID = '"+ this.patientID +"'";
+        try {
+			
+            
+                DBConnect dbcon = new DBConnect();
+                con = dbcon.Connect();
+                statement = con.createStatement();
+
+                System.out.println(deleteAppointment);
+
+                // execute insert SQL stetement
+                statement.executeUpdate(deleteAppointment);
 
                 System.out.println("Record has been removed from appointments table!");
 

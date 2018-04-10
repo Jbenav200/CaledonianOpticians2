@@ -14,10 +14,16 @@ import javax.swing.JOptionPane;
  */
 public class PatientDashboard extends javax.swing.JFrame {
 
+    public String patientID;
     /**
      * Creates new form PatientDashboard
      */
     public PatientDashboard() {
+        initComponents();
+    }
+    
+    public PatientDashboard(String patientID){
+        this.patientID = patientID;
         initComponents();
     }
 
@@ -225,14 +231,8 @@ public class PatientDashboard extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        JFrame frame = new JFrame("InputDialog Example #2");
-        String code = JOptionPane.showInputDialog(
-        frame, 
-        "Enter the patient ID:", 
-        "Patient ID", 
-        JOptionPane.WARNING_MESSAGE
-    );
-        ViewAppointmentsPatient vap = new ViewAppointmentsPatient(code);
+        System.out.println(this.patientID);
+        ViewAppointmentsPatient vap = new ViewAppointmentsPatient(this.patientID);
         vap.setVisible(true);
         setVisible(false);
         dispose();

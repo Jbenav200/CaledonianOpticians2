@@ -216,7 +216,7 @@ public class PatientLogin extends javax.swing.JFrame {
                     
                     if (patientID.equals(user) && password.equals(pass))
                     {
-                        PatientDashboard pdb = new PatientDashboard();
+                        PatientDashboard pdb = new PatientDashboard(patientID);
                         pdb.setVisible(true);
                         setVisible(false);
                         dispose();

@@ -28,6 +28,7 @@ public final class Patient {
     private String postCode;
     private String email;
     private String password;
+    private String status;
     private boolean patientExists = false;
     
     public Patient(){
@@ -37,13 +38,13 @@ public final class Patient {
         this.address = "25 wallaby way";
         this.postCode = "G70 9LU";
         this.email = "john.doe@gmail.com";
+        this.status = "in progress";
         this.patientExists = false;
     }
     
     public Patient(String patientID){
         this.patientID = patientID;
         receivePatientData(patientID);
-        
         
     }
     
@@ -58,18 +59,31 @@ public final class Patient {
         this.patientID = this.name.substring(0, 1) + this.name.substring(1,2) + this.name.substring(2,3) + this.lastName.substring(0,1) + this.lastName.substring(1,2) + this.lastName.substring(2,3) + this.dateOfBirth.substring(8,9) + this.dateOfBirth.substring(9,10);
         System.out.println(patientID);
         this.patientExists = true;
+        this.status = "in progress";
     }
     
     public String getName(){
         return this.name;
     }
     
+    public void setName(String name){
+        this.name = name;
+    }
+    
     public String getLastName(){
         return this.lastName;
     }
     
+    public void setLastName(String lastName){
+        this.lastName = lastName;
+    }
+    
     public String getDOB(){
         return this.dateOfBirth;
+    }
+    
+    public void setDOB(String dob){
+        this.dateOfBirth = dob;
     }
     
     public String getAddress(){
@@ -92,19 +106,28 @@ public final class Patient {
         return patientID;
     }
     
+    public void setPatientID(String patientID){
+        this.patientID = patientID;
+    }
+    
     public String getPassword(){
         return password;
     }
     
-    public void retrievePatientDetails(String patientID, String password){
-        
+    public String getStatus(){
+        return this.status;
     }
     
-    public void updatePatientDetails(String patientID, String name, String lastName, String dateOB){
+    public void setStatus(String status){
+        this.status = status; 
+    }
+    
+    
+    public void updatePatientDetails(String patientID, String name, String lastName, String dateOB, String status){
         Connection conn;
         Statement statement;
         System.out.println(patientID + name + lastName);
-        String setOpticianDetails = "UPDATE patients SET PatientID= '" + patientID + "',Name='"+ name +"',LastName='"+ lastName +"',DateOfBirth='"+ dateOB +"' WHERE PatientID = '"+ this.patientID +"'";
+        String setOpticianDetails = "UPDATE patients SET PatientID= '" + patientID + "',Name='"+ name +"',LastName='"+ lastName +"', DateOfBirth='"+ dateOB +"', status='"+ status + "' WHERE PatientID = '"+ this.patientID +"'";
         DBConnect db = new DBConnect();
         conn = db.Connect();
         try {
@@ -122,19 +145,19 @@ public final class Patient {
     public void receivePatientData(String patientID){
         Connection conn;
         Statement statement;
-        String getOpticianDetails = "SELECT * FROM patients WHERE patientID = '"+ this.patientID +"'";
+        ResultSet rs;
+        String getOpticianDetails = "SELECT * FROM patients WHERE PatientID = '"+ this.patientID +"'";
             DBConnect db = new DBConnect();
             conn = db.Connect();
         try {
             statement = conn.createStatement();
-            ResultSet rs;
-            String opID;
             rs = statement.executeQuery(getOpticianDetails);
             if(rs.next()){
-                this.patientID = rs.getString(2);
-                this.name = rs.getString(3);
-                this.lastName = rs.getString(4);
-                this.dateOfBirth = rs.getString(5);
+                setPatientID(rs.getString("PatientID"));
+                setName(rs.getString("Name"));
+                setLastName(rs.getString("LastName"));
+                setDOB(rs.getString("DateOfBirth"));
+                setStatus(rs.getString("status"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Patient.class.getName()).log(Level.SEVERE, null, ex);
