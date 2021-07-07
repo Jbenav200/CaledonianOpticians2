@@ -1,5 +1,3 @@
 # CaledonianOpticians
-Integrated Project 1
 
-## Database Information - Please Read
-the SQL Connection and Queries are not using the current best safety practices. This is a University Project.
+The purpose of this project was to create an application which would allow patients to register appointments with an optician. Caledonian Opticians is not a real company and this project is for skill demonstration purposes.
